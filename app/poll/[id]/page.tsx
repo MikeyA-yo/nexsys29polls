@@ -35,25 +35,36 @@ export default function PollPage() {
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    fetchPoll();
+    fetchPoll(false, true); // Initial load, don't show refresh, is initial
     checkIfVoted();
   }, [pollId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const fetchPoll = async (showRefresh = false) => {
+  useEffect(() => {
+    if (loading || voting || editing || showEdit) return;
+
+    const interval = setInterval(() => {
+      fetchPoll(false, false); // Auto-refresh, don't show overlay, not initial
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [pollId, loading, voting, editing, showEdit]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const fetchPoll = async (showRefresh = false, isInitial = false) => {
     if (showRefresh) setRefreshing(true);
     try {
       const response = await fetch(`/api/polls/${pollId}`);
       if (response.ok) {
         const data = await response.json();
         setPoll(data);
+        if (isInitial) setError(''); // Clear error on successful initial load
       } else {
-        setError('Poll not found');
+        if (isInitial) setError('Poll not found');
       }
     } catch {
-      setError('Failed to load poll');
+      if (isInitial) setError('Failed to load poll');
     } finally {
       if (showRefresh) setRefreshing(false);
-      setLoading(false);
+      if (isInitial) setLoading(false);
     }
   };
 
@@ -125,7 +136,7 @@ export default function PollPage() {
       });
 
       if (response.ok) {
-        await fetchPoll(true); // Refresh poll data
+        await fetchPoll(true, false); // Refresh poll data after edit
         setNewOption('');
         setShowEdit(false);
         setEditPassword('');
