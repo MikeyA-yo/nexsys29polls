@@ -123,7 +123,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => removeOption(index)}
-                    className="px-3 py-2 text-red-600 hover:text-red-800"
+                    className="px-3 py-2 text-red-700 hover:text-red-800"
                   >
                     Remove
                   </button>
@@ -133,7 +133,7 @@ export default function Home() {
             <button
               type="button"
               onClick={addOption}
-              className="mt-2 px-4 py-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
+              className="mt-2 px-4 py-2 text-blue-700 hover:text-blue-800 text-sm font-medium"
             >
               + Add Option
             </button>
