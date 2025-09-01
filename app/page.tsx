@@ -67,20 +67,20 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md mx-auto bg-white dark:bg-neutral-800 rounded-lg shadow-md p-6">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Create a Poll</h1>
-          <p className="mt-2 text-gray-600">Create an anonymous poll and share it with others</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Create a Poll</h1>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">Create an anonymous poll and share it with others</p>
         </div>
 
         {pollUrl && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
-            <h3 className="text-green-800 font-medium">Poll created successfully!</h3>
-            <p className="text-green-700 text-sm mt-1">Share this link:</p>
+          <div className="mb-6 p-4 bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700 rounded-md">
+            <h3 className="text-green-800 dark:text-green-200 font-medium">Poll created successfully!</h3>
+            <p className="text-green-700 dark:text-green-300 text-sm mt-1">Share this link:</p>
             <a
               href={pollUrl}
-              className="text-blue-600 hover:text-blue-800 break-all"
+              className="text-blue-600 dark:text-blue-300 hover:text-blue-800 break-all"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -91,7 +91,7 @@ export default function Home() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="question" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="question" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               Question
             </label>
             <input
@@ -99,14 +99,14 @@ export default function Home() {
               id="question"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:text-gray-100 dark:border-neutral-600"
               placeholder="What's your favorite color?"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
               Options
             </label>
             {options.map((option, index) => (
@@ -115,7 +115,7 @@ export default function Home() {
                   type="text"
                   value={option}
                   onChange={(e) => updateOption(index, e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:text-gray-100 dark:border-neutral-600"
                   placeholder={`Option ${index + 1}`}
                   required
                 />
@@ -123,7 +123,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => removeOption(index)}
-                    className="px-3 py-2 text-red-700 hover:text-red-800"
+                    className="px-3 py-2 text-red-700 dark:text-red-300 hover:text-red-800"
                   >
                     Remove
                   </button>
@@ -133,14 +133,14 @@ export default function Home() {
             <button
               type="button"
               onClick={addOption}
-              className="mt-2 px-4 py-2 text-blue-700 hover:text-blue-800 text-sm font-medium"
+              className="mt-2 px-4 py-2 text-blue-700 dark:text-blue-300 hover:text-blue-800 text-sm font-medium"
             >
               + Add Option
             </button>
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               Poll Password
             </label>
             <input
@@ -148,11 +148,11 @@ export default function Home() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:text-gray-100 dark:border-neutral-600"
               placeholder="Password to edit this poll"
               required
             />
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
               You&apos;ll need this password to edit the poll later
             </p>
           </div>
